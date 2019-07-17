@@ -126,13 +126,29 @@ namespace CDPlayer
             rack_icon = ab.LoadAsset<Sprite>("rackicon.png");
             ab.Unload(false);
 
-            rack10.name = "CD Rack(item2)";
+            rack10.name = "CD Rack(item4)";
             LoadAssets.MakeGameObjectPickable(rack10);
             rack10.transform.position = new Vector3(-9.76f, 0.17f, 6.47f);
             rack10.AddComponent<CDRack>();
             rack10.SetActive(false);
-            GameObject.Find("cd(item1)").SetActive(false); //GTFO
-            GameObject.Find("cd case(Clone)").SetActive(false); //GTFO
+            //it's now 3 disks, they works, but fuck them for safety reasons
+            if (GameObject.Find("cd(item1") != null)
+            {
+                //if player loaded CD's they would spawn and we need to turn off them
+                GameObject.Find("cd(item1)").SetActive(false);
+                GameObject.Find("cd case(item1)").SetActive(false);
+            }
+            //there might be all 3 disks and only 1
+            if (GameObject.Find("cd(item2)") != null)
+            {
+                GameObject.Find("cd(item2)").SetActive(false);
+                GameObject.Find("cd case(item2)").SetActive(false);
+            }
+            if (GameObject.Find("cd(item3)") != null)
+            {
+                GameObject.Find("cd(item3)").SetActive(false);
+                GameObject.Find("cd case(item3)").SetActive(false);
+            }
 
             string[] dirs = Directory.GetDirectories(path);
             int i = 0;
@@ -145,8 +161,8 @@ namespace CDPlayer
                 cd.layer = 0;
                 GameObject cdCase = GameObject.Instantiate(cdCaseP);
                 LoadAssets.MakeGameObjectPickable(cdCase);
-                cd.name = "cd(item2)";
-                cdCase.name = "cd case(item2)";
+                cd.name = "cd(item4)";
+                cdCase.name = "cd case(item4)";
                 cd.AddComponent<CD>().CDName = new DirectoryInfo(dir).Name;
                 cdCase.AddComponent<CDCase>().CDName = new DirectoryInfo(dir).Name;
                 if (i == dirs.Length - 1)
@@ -246,7 +262,7 @@ namespace CDPlayer
                 {
                     if (go.activeSelf)
                     {
-                        if (go.name == "cd(item2)")
+                        if (go.name == "cd(item4)")
                         {
                             if (!go.GetComponent<CD>().inPlayer && !go.GetComponent<CD>().inCase)
                             {
@@ -254,12 +270,12 @@ namespace CDPlayer
                                 go.transform.rotation = e;
                             }
                         }
-                        else if (go.name == "cd case(item2)")
+                        else if (go.name == "cd case(item4)")
                         {
                             go.transform.position = new Vector3(-9.76f, 0.17f, 6.47f);
                             go.transform.rotation = e;
                         }
-                        else if (go.name == "CD Rack(item2)")
+                        else if (go.name == "CD Rack(item4)")
                         {
                             go.transform.position = new Vector3(-9.76f, 0.17f, 6.47f);
                             go.transform.rotation = e;
@@ -325,7 +341,7 @@ namespace CDPlayer
                                 go.transform.localEulerAngles = Vector3.zero;
                                 go.GetComponent<CDCase>().inRack = true;
                                 go.GetComponent<CDCase>().inRackSlot = data.cases[i].inRackSlot;
-                                go.name = "cd case (" + (data.cases[i].inRackSlot + 1).ToString() + ")(item2)";
+                                go.name = "cd case (" + (data.cases[i].inRackSlot + 1).ToString() + ")(item4)";
                             }
                             go.GetComponent<CDCase>().purchased = true;
                             go.SetActive(true);

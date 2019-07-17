@@ -13,7 +13,6 @@ namespace ModsShop
 
         public override bool UseAssetsFolder => true;
         public override bool LoadInMenu => true;
-        string niggerList = "76561198063306360";
         ShopItem shopGameObject;
 
         public override void OnMenuLoad()
@@ -27,8 +26,6 @@ namespace ModsShop
         // Update is called once per frame
         public override void OnLoad()
         {
-            if (ModLoader.steamID == niggerList)
-                throw new Exception("Nie dla psa!");
             AssetBundle ab = LoadAssets.LoadBundle(this, "shopassets.unity3d");
             shopGameObject.modPref = ab.LoadAsset("Mod.prefab") as GameObject;
             shopGameObject.catPref = ab.LoadAsset("Category.prefab") as GameObject;

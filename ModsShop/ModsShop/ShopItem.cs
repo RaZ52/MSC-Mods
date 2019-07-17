@@ -68,7 +68,7 @@ namespace ModsShop
             cartListView = shopCatalogUI.transform.GetChild(0).GetChild(1).GetChild(1).GetChild(0).gameObject;
             shopCatalogUI.transform.GetChild(0).GetChild(1).GetChild(2).GetChild(2).GetComponent<Button>().onClick.AddListener(() => FinishOrder());
             teimoCashSound = GameObject.Find("STORE/StoreCashRegister").AddComponent<AudioSource>();
-            fleetariCashSound = GameObject.Find("REPAIRSHOP").transform.GetChild(0).GetChild(5).GetChild(0).gameObject.AddComponent<AudioSource>();
+            fleetariCashSound = GameObject.Find("REPAIRSHOP").transform.GetChild(7).GetChild(0).GetChild(0).gameObject.AddComponent<AudioSource>();
             teimoCashSound.playOnAwake = false; fleetariCashSound.playOnAwake = false;
             teimoCashSound.clip = GameObject.Find("MasterAudio/Store/cash_register_2").GetComponent<AudioSource>().clip;
             fleetariCashSound.clip = teimoCashSound.clip;
